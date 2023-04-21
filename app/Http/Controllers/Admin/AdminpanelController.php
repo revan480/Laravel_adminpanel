@@ -17,7 +17,7 @@ class AdminpanelController extends Controller
             'title' => 'Adminpanel',
             'breadcrumbs' => [
                 trans('backpack::crud.admin') => backpack_url('dashboard'),
-                'Adminpanel' => false,
+                'Adminpanel' => true,
             ],
             'page' => 'resources/views/admin/adminpanel.blade.php',
             'controller' => 'app/Http/Controllers/Admin/AdminpanelController.php',
