@@ -47,15 +47,6 @@ header h1 {
   flex-wrap: wrap;
 }
 
-/* Sidebar styles */
-.sidebar {
-  width: 250px;
-  background-color: #fff;
-  border-radius: 5px;
-  margin-right: 20px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
 
 .sidebar h2 {
   margin-top: 0;
