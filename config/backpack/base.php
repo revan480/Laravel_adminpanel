@@ -41,7 +41,10 @@ return [
     // ---------
 
     // Show "Getting Started with Backpack" info block?
-    'show_getting_started' => false,
+    'show_getting_started' => true,
+
+    // Show "Latest Activity" info block?
+    'show_latest_activity' => true,
 
     // ------
     // STYLES
