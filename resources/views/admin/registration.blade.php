@@ -181,7 +181,7 @@
                             <option value="">Otaq seçin</option>
                             <?php
                                 foreach ($rooms as $room) {
-                                    echo '<option value="'.$room->number.'">Room '.$room->number.'</option>';
+                                    echo '<option value="'.$room->number.'">Otaq '.$room->number.'</option>';
                                 }
                             ?>
                         </select>
