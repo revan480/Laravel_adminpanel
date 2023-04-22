@@ -24,7 +24,7 @@ class PatientFactory extends Factory
             'price' => $this->faker->randomNumber(3),
             'doctor_name' => $this->faker->name,
             'room_number' => $this->faker->randomNumber(3),
-            'bill_type' => $this->faker->randomElement(['cash', $this->faker->name]),
+            'bill_type' => $this->faker->randomElement(['Legacy', $this->faker->name]),
             'feedback' => $this->faker->text,
             'date' => $this->faker->dateTime,
         ];
