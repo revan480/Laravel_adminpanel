@@ -25,10 +25,6 @@ Route::get('/', function () {
     return redirect('/admin/login');
 });
 
-Route::get('/home', function(){
-    return redirect('/admin/dashboard');
-});
-
 Route::post('/checkout/search',
     [CheckoutController::class, 'checkout']
 )->name('page.bill.checkout');
