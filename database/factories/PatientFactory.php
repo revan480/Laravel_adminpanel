@@ -16,14 +16,21 @@ class PatientFactory extends Factory
      */
     public function definition(): array
     {
+        $names = [
+            'Rena',
+            'Gulu',
+            'Nermin',
+            'Terane',
+            'Nigar',
+            'Aza',
+        ];
         return [
             'name' => $this->faker->name,
             'surname' => $this->faker->name,
             'phone' => $this->faker->phoneNumber,
             'area' => $this->faker->city,
             'price' => $this->faker->randomNumber(3),
-            'doctor_name' => $this->faker->name,
-            // Choose room number between 100 and 105
+            'doctor_name' => $this->faker->randomElement($names),
             'room_number' => $this->faker->numberBetween(100, 105),
             'bill_type' => $this->faker->randomElement(['Legacy', $this->faker->name]),
             'feedback' => $this->faker->text,

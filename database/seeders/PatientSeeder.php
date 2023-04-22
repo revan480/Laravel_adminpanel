@@ -13,7 +13,7 @@ class PatientSeeder extends Seeder
     public function run(): void
     {
         // Create 10 patients
-        \App\Models\Patient::factory()->count(10)->create();
+        \App\Models\Patient::factory()->count(50)->create();
 
     }
 }
