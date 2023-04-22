@@ -149,15 +149,18 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="inputArea">Nahiyə</label>
                     <input type="text" class="form-control" id="inputArea" name="area" placeholder="Nahiyə" required>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="inputPrice">Qiymət (AZN)</label>
                     <input type="number" class="form-control" id="inputPrice" name="price" placeholder="Qiymət" required>
                 </div>
-
+                <div class="form-group col-md-4">
+                    <label for="inputDate">Tarix</label>
+                    <input type="datetime-local" class="form-control" id="inputDate" name="date"  placeholder="Tarix" required>
+                </div>
             </div>
 
             <div class="form-row">
@@ -184,12 +187,13 @@
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                    <label for="inputCard">Kart Sahibi</label>
+                    <label for="inputCard">Ödəniş növü</label>
                     <select class="form-control" id="inputCard" name="bill" required>
-                        <option value="">Kart seçin</option>
-                        <option value="Legacy">Legacy</option>
-                        <option value="Card-to-card">Card-to-card</option>
-                        <option value="Cash">Cash</option>
+                        <option value="">Ödəniş növünü seçin</option>
+                        <option value="Legacy">Nəğd</option>
+                        @foreach($bills as $bill)
+                            <option value="{{ $bill->name }}">{{ $bill->name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -203,7 +207,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary">Qeyd et</button>
                 </div>
             </div>
         </form>

@@ -257,11 +257,11 @@ header h1 {
 
 <div class="container" style="margin-top: 10px;">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <form action="{{route("page.bill.checkout")}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="room-selector">
-          <label for="room-select">Select Room:</label>
+          <label for="room-select">Otaq:</label>
           <select id="room-select" name="room_selector" onchange="myFunction()">
               <option value="-">-</option>
               <?php
@@ -273,7 +273,7 @@ header h1 {
         </div>
         {{-- Doctor name --}}
         <div class="doctor-selector">
-            <label for="doctor-name">Doctor name:</label>
+            <label for="doctor-name">Həkim adı:</label>
             <select id="doctor-name" name="doctor_name">
               <option value="-">-</option>
               <?php
@@ -284,8 +284,23 @@ header h1 {
             </select>
         </div>
         <div class="form-group">
-          <label for="checkin-date">Check-in date:</label>
-          <input type="date" id="checkin-date" name="checkindate">
+            <label for="date">Tarix:</label>
+            <input type="date" id="fromDate" name="fromDate">
+            <label for="untilDate">-dan</label>
+            <input type="date" id="untilDate" name="untilDate">
+            <label for="untilDate">-dək</label>
+        </div>
+        <div class="form-group">
+            <label for="card">Ödəniş növü:</label>
+            <select name="card" id="card-select">
+                <option value="-">-</option>
+                <option value="Legacy">Nəğd</option>
+                <?php
+                foreach ($bills as $bill) {
+                    echo '<option value="' . $bill->name . '">' . $bill->name . '</option>';
+                }
+                ?>
+            </select>
         </div>
         {{-- Create a button for submiton --}}
         <div class="form-group">
@@ -305,7 +320,7 @@ header h1 {
             <div class="card-header" id="heading{{$i}}">
                 <h5 class="mb-0">
                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">
-                        {{ $patient->name }}
+                        {{ $patient->name }} {{ $patient->date }}
                     </button>
                 </h5>
             </div>
@@ -313,14 +328,18 @@ header h1 {
                 <div class="card-body">
                 {{-- Create a list --}}
                 <ul>
-                    <li>Name: {{ $patient->name }}</li>
-                    <li>Surname: {{ $patient->surname }}</li>
-                    <li>Room: {{ $patient->room_number }}</li>
-                    <li>Doctor: {{ $patient->doctor_name }}</li>
-                    <li>Check-in date: {{ $patient->created_at }}</li>
-                    <li>Check-out date: {{ $patient->updated_at }}</li>
-                    <li>Price: {{ $patient->price }}AZN</li>
-
+                    <li>Ad: {{ $patient->name }}</li>
+                    <li>Soyad: {{ $patient->surname }}</li>
+                    <li>Otaq: {{ $patient->room_number }}</li>
+                    <li>Mütəxəssis: {{ $patient->doctor_name }}</li>
+                    <li>Tarix: {{ $patient->date }}</li>
+                    <li>Qiymət: {{ $patient->price }}AZN</li>
+                    @if($patient->bill_type == 'Legacy')
+                        <li>Ödəniş növü: Nəğd </li>
+                    @else
+                        <li>Ödəniş növü: Kart</li>
+                    @endif
+                    <li>Telefon: {{ $patient->phone }}</li>
                 </ul>
                 </div>
             </div>

@@ -1,9 +1,12 @@
 {{-- This file is used to store sidebar items, inside the Backpack admin panel --}}
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="la la-home nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="la la-home nav-icon"></i> Idarə Paneli</a></li>
 
-<li class="nav-title">Patients</li>
+<li class="nav-title">Xəstələr</li>
 
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('registration') }}"><i class="nav-icon la la-address-book"></i> Registration</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('registration') }}"><i class="nav-icon la la-address-book"></i> Qeydiyyat</a></li>
+
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('patient') }}"><i class="nav-icon la la-bed"></i> Xəstələr</a></li>
+
 
 <li class="nav-title">Admin</li>
 
@@ -15,31 +18,27 @@
     <ul class="nav-dropdown-items">
         <li class="nav-item">
             <a class="nav-link" href="{{ backpack_url('room') }}">
-                <i class="nav-icon la la-door-open"></i> Rooms
+                <i class="nav-icon la la-door-open"></i> Otaqlar
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ backpack_url('doctor') }}">
-                <i class="nav-icon la la-briefcase"></i> Employee
+                <i class="nav-icon la la-briefcase"></i> Mütəxəssislər
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ backpack_url('bill') }}">
-                <i class="nav-icon la la-money-check"></i> Payment types
+                <i class="nav-icon la la-money-check"></i> Ödəniş növü
             </a>
         </li>
     </ul>
 </li>
 
-<li class="nav-title">Checkout</li>
+<li class="nav-title">Kassa</li>
 
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('checkout') }}"><i class="nav-icon la la-money"></i> Checkout</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('checkout') }}"><i class="nav-icon la la-money"></i>Kassa</a></li>
 
 
 
 {{-- <li class="nav-item"><a class="nav-link" href="{{ backpack_url('adminpanel') }}"><i class="nav-icon la la-user"></i> Adminpanel</a></li> --}}
-
-
-
-
 

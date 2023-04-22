@@ -26,6 +26,7 @@ class RegistrationController extends Controller
             'controller' => 'app/Http/Controllers/Admin/RegistrationController.php',
             'doctors' => DB::table('doctors')->select('name')->get(),
             'rooms' => DB::table('rooms')->select('number')->get(),
+            'bills' => DB::table('bills')->select('name')->get(),
 
         ]);
     }
@@ -56,6 +57,7 @@ class RegistrationController extends Controller
             'room_number' => $request->room,
             'bill_type' => $request->bill,
             'feedback' => $request->feedback,
+            'date' => $request->date,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

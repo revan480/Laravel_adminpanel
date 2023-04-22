@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\BillRequest;
+use App\Http\Requests\PatientRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class BillCrudController
+ * Class PatientCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class BillCrudController extends CrudController
+class PatientCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class BillCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Bill::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/bill');
-        CRUD::setEntityNameStrings('bill', 'bills');
+        CRUD::setModel(\App\Models\Patient::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/patient');
+        CRUD::setEntityNameStrings('patient', 'patients');
     }
 
     /**
@@ -40,12 +40,15 @@ class BillCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('name');
-        // Create a dropdown for type column with only 2 values
-        CRUD::column('type')->type('select_from_array')->options([
-            'cash' => 'Nəğd',
-            'card' => 'Kart',
-        ]);
-        // CRUD::column('type');
+        CRUD::column('surname');
+        CRUD::column('phone');
+        CRUD::column('area');
+        CRUD::column('price');
+        CRUD::column('doctor_name');
+        CRUD::column('room_number');
+        CRUD::column('bill_type');
+        CRUD::column('feedback');
+        CRUD::column('date');
         // CRUD::column('created_at');
         // CRUD::column('updated_at');
 
@@ -65,10 +68,15 @@ class BillCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::field('type')->type('select_from_array')->options([
-            'cash' => 'Nəğd',
-            'card' => 'Kart',
-        ]);
+        CRUD::field('surname');
+        CRUD::field('phone');
+        CRUD::field('area');
+        CRUD::field('price');
+        CRUD::field('doctor_name');
+        CRUD::field('room_number');
+        CRUD::field('bill_type');
+        CRUD::field('feedback');
+        CRUD::field('date');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

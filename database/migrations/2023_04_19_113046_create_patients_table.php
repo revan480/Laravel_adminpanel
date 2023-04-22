@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('room_number');
             $table->string('bill_type');
             $table->string('feedback');
+            $table->timestamp('date')->nullable();
             $table->timestamps();
         });
     }
