@@ -23,7 +23,8 @@ class PatientFactory extends Factory
             'area' => $this->faker->city,
             'price' => $this->faker->randomNumber(3),
             'doctor_name' => $this->faker->name,
-            'room_number' => $this->faker->randomNumber(3),
+            // Choose room number between 100 and 105
+            'room_number' => $this->faker->numberBetween(100, 105),
             'bill_type' => $this->faker->randomElement(['Legacy', $this->faker->name]),
             'feedback' => $this->faker->text,
             'date' => $this->faker->dateTime,
