@@ -266,7 +266,7 @@ header h1 {
               <option value="-">-</option>
               <?php
                 foreach ($rooms as $room) {
-                    echo '<option value="' . $room->number . '">Room ' . $room->number . '</option>';
+                    echo '<option value="' . $room->number . '">' . $room->number . '</option>';
                 }
                 ?>
             </select>

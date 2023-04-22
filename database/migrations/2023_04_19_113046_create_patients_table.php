@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('doctor_name');
             $table->string('room_number');
             $table->string('bill_type');
-            $table->string('feedback')->nullable();
+            $table->text('feedback')->nullable();
             $table->timestamp('date')->nullable();
             $table->timestamps();
         });
