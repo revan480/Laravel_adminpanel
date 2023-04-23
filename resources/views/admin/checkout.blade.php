@@ -320,7 +320,7 @@ header h1 {
             <div class="card-header" id="heading{{$i}}">
                 <h5 class="mb-0">
                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">
-                        Ad:{{ $patient->name }} Telefon: {{ $patient->phone }} Qiymət:{{ $patient->price }} Tarix: {{ $patient->date }}
+                        Ad:{{ $patient->name }} <br> Telefon: {{ $patient->phone }} <br> Qiymət:{{ $patient->price }} <br> Tarix: {{ $patient->date }}
                     </button>
                 </h5>
             </div>
