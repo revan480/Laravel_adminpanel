@@ -36,6 +36,8 @@ class Patient extends Model
     }
 
     public function bill(): BelongsTo{
+        // Take first 3 rows
+
         return $this->belongsTo(Bill::class);
     }
 

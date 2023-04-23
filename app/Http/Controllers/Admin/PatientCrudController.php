@@ -101,14 +101,84 @@ class PatientCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('name');
-        CRUD::field('surname');
-        CRUD::field('phone');
-        CRUD::field('area');
-        CRUD::field('price');
-        CRUD::field('doctor_id');
-        // CRUD::field('room_id');
-        // CRUD::field('bill_id');
+        // Add comments to each line
+        CRUD::addField(
+            [
+                'name' => 'name',
+                'type' => 'text',
+                'label' => 'Ad',
+            ]
+        );
+        CRUD::addField(
+            [
+                'name' => 'surname',
+                'type' => 'text',
+                'label' => 'Soyad',
+            ]
+        );
+        CRUD::addField(
+            [
+                'name' => 'phone',
+                'type' => 'text',
+                'label' => 'Telefon',
+            ]
+        );
+        CRUD::addField(
+            [
+                'name' => 'area',
+                'type' => 'text',
+                'label' => 'Nahiyə',
+            ]
+        );
+        CRUD::addField(
+            [
+                'name' => 'price',
+                'type' => 'number',
+                'label' => 'Qiymət',
+            ]
+        );
+        CRUD::addField(
+            [
+                'name' => 'doctor_id',
+                'type' => 'select',
+                'label' => 'Həkim',
+                'entity' => 'doctor',
+                'attribute' => 'name',
+                'model' => 'App\Models\Doctor',
+            ]
+        );
+        CRUD::addField(
+            [
+                'name' => 'room_id',
+                'type' => 'select',
+                'label' => 'Otaq',
+                'entity' => 'room',
+                'attribute' => 'number',
+                'model' => 'App\Models\Room',
+            ]
+        );
+        CRUD::addField(
+            [
+                'name' => 'bill_id',
+                'type' => 'select',
+                'label' => 'Hesab',
+                'entity' => 'bill',
+                'attribute' => 'type',
+                'model' => 'App\Models\Bill',
+            ]
+        );
+
+
+        CRUD::addField(
+            [
+                'name' => 'packet_id',
+                'type' => 'select',
+                'label' => 'Paket',
+                'entity' => 'packet',
+                'attribute' => 'name',
+                'model' => 'App\Models\Packet',
+            ]
+        );
         CRUD::field('feedback');
         CRUD::field('date');
 

@@ -40,6 +40,7 @@ class Bill extends Model
     */
 
     public function patients():HasMany{
+        // Take only the first row
         return $this->hasMany(Patient::class);
     }
 
