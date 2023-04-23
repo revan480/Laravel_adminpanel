@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             BillSeeder::class,
             PacketSeeder::class,
             RoomSeeder::class,
-            PatientSeeder::class,
+            // PatientSeeder::class,
         ]);
 
     }
