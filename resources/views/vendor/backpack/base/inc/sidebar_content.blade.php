@@ -5,7 +5,7 @@
 
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('registration') }}"><i class="nav-icon la la-address-book"></i> Qeydiyyat</a></li>
 
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('registration') }}"><i class="nav-icon la la-bed"></i> Xəstələr</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('patient') }}"><i class="nav-icon la la-bed"></i> Xəstələr</a></li>
 
 
 <li class="nav-title">Admin</li>
