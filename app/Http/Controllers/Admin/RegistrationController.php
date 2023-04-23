@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -24,17 +25,17 @@ class RegistrationController extends Controller
             ],
             'page' => 'resources/views/admin/registration.blade.php',
             'controller' => 'app/Http/Controllers/Admin/RegistrationController.php',
-            'doctors' => DB::table('doctors')->select('name')->get(),
-            'rooms' => DB::table('rooms')->select('number')->get(),
-            'bills' => DB::table('bills')->select('name')->get(),
-
+            'doctors' => DB::table('doctors')->get(),
+            'rooms' => DB::table('rooms')->get(),
+            'bills' => DB::table('bills')->get(),
+            'packets' => DB::table('packets')->get(),
         ]);
     }
 
     // Register function
     public function store(Request $request){
 
-
+        // dd($request);
         $request->validate([
             'name' => 'required',
             'surname' => 'required',
@@ -44,23 +45,32 @@ class RegistrationController extends Controller
             'doctor' => 'required',
             'room' => 'required',
             'bill' => 'required',
+            'packet' => 'nullable',
             'feedback' => 'nullable',
         ]);
 
-        DB::table('patients')->insert([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'phone' => $request->phone,
-            'area' => $request->area,
-            'price' => $request->price,
-            'doctor_name' => $request->doctor,
-            'room_number' => $request->room,
-            'bill_type' => $request->bill,
-            'feedback' => $request->feedback,
-            'date' => $request->date,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // Add all the information to the tables
+        $patient = new Patient();
+
+        $patient->name = $request->name;
+        $patient->surname = $request->surname;
+        $patient->phone = $request->phone;
+        $patient->area = $request->area;
+        $patient->price = $request->price;
+        $patient->doctor_id = $request->doctor;
+        $patient->room_id = $request->room;
+        $patient->bill_id = $request->bill;
+        if($request->packet == null){
+            $patient->packet_id = 1;
+        }
+        else{
+            $patient->packet_id = $request->packet;
+        }
+        $patient->feedback = $request->feedback;
+        $patient->date = $request->date;
+
+        $patient->save();
+
 
         return redirect()->route('page.registration.index')->with('success', 'Patient registered successfully!');
     }

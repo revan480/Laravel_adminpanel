@@ -31,6 +31,11 @@
                 <i class="nav-icon la la-money-check"></i> Ödəniş növü
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ backpack_url('packet') }}">
+                <i class="nav-icon la la-gift"></i> Paketlər
+            </a>
+        </li>
     </ul>
 </li>
 
@@ -41,4 +46,3 @@
 
 
 {{-- <li class="nav-item"><a class="nav-link" href="{{ backpack_url('adminpanel') }}"><i class="nav-icon la la-user"></i> Adminpanel</a></li> --}}
-

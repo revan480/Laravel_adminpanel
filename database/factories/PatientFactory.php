@@ -24,17 +24,19 @@ class PatientFactory extends Factory
             'Nigar',
             'Aza',
         ];
+        // return fields by taking into consideration all the relationships
         return [
-            'name' => $this->faker->name,
-            'surname' => $this->faker->name,
+            'name' => $this->faker->firstName,
+            'surname' => $this->faker->lastName,
             'phone' => $this->faker->phoneNumber,
-            'area' => $this->faker->city,
-            'price' => $this->faker->randomNumber(3),
-            'doctor_name' => $this->faker->randomElement($names),
-            'room_number' => $this->faker->numberBetween(100, 105),
-            'bill_type' => $this->faker->randomElement(['Legacy', $this->faker->name]),
-            'feedback' => $this->faker->text,
-            'date' => $this->faker->dateTime,
+            'area' => $this->faker->randomElement(['Baku', 'Sumqayit', 'Ganja', 'Shamkir', 'Quba', 'Qusar', 'Mingachevir', 'Astara', 'Agdam', 'Agdas', 'Agstafa', 'Agsu', 'Ali Bayramli', 'Astara', 'Babak', 'Balakan', 'Barda', 'Beylagan', 'Bilasuvar', 'Cabrayil', 'Calilabad', 'Daskasan', 'Davaci', 'Fuzuli', 'Gadabay', 'Ganca', 'Goranboy', 'Goycay', 'Haciqabul', 'Imisli', 'Ismayilli', 'Kalbacar', 'Kurdamir', 'Lacin', 'Lankaran', 'Lerik', 'Masalli', 'Mingacevir', 'Naftalan', 'Naxcivan', 'Neftcala', 'Oguz', 'Qabala', 'Qax', 'Qazax', 'Qobustan', 'Quba', 'Qubadli', 'Qusar', 'Saatli', 'Sabirabad', 'Saki', 'Salyan', 'Samaxi', 'Samkir', 'Samux', 'Siyazan', 'Sumqayit', 'Susa', 'Tartar', 'Tovuz', 'Ucar', 'Xacmaz', 'Xankandi', 'Xanlar', 'Xizi', 'Xocali', 'Xocavand', 'Yardimli', 'Yevlax', 'Zangilan', 'Zaqatala', 'Zardab']),
+            'price' => $this->faker->randomElement([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]),
+            'doctor_id' => $this->faker->numberBetween(1, 6),
+            'room_id' => $this->faker->numberBetween(1,10),
+            'bill_id' => $this->faker->numberBetween(1,10),
+            'packet_id' => $this->faker->numberBetween(1,10),
+            'feedback' => $this->faker->text(100),
+            'date' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];
     }
 }

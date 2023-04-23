@@ -5,6 +5,8 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Patient extends Model
 {
@@ -18,10 +20,33 @@ class Patient extends Model
         'phone',
         'area',
         'price',
-        'doctor_name',
-        'room_number',
-        'bill_type',
+        'doctor_id',
+        'room_id',
+        'bill_id',
         'feedback',
         'date',
     ];
+
+    public function doctor(): BelongsTo{
+        return $this->belongsTo(Doctor::class);
+    }
+
+    public function room(): BelongsTo{
+        return $this->belongsTo(Room::class);
+    }
+
+    public function bill(): BelongsTo{
+        return $this->belongsTo(Bill::class);
+    }
+
+    public function packet(): BelongsTo{
+        return $this->belongsTo(Packet::class);
+    }
+
+    // public static function getDataWithDoctorName(){
+    //     // join tables
+    //     $patients = Patient::join('doctors', 'patients.doctor_id', '=', 'doctors.id')
+    //         ->select('patients.*', 'doctors.name as doctor_name')
+    //         ->get();
+    // }
 }

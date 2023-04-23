@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -27,12 +27,12 @@ body {
 }
 
 /* Header styles */
-header {
+/* header {
   background-color: #333;
   color: #fff;
   padding: 20px;
   text-align: center;
-}
+} */
 
 header h1 {
   margin: 0;
@@ -266,7 +266,7 @@ header h1 {
               <option value="-">-</option>
               <?php
                 foreach ($rooms as $room) {
-                    echo '<option value="' . $room->number . '">' . $room->number . '</option>';
+                    echo '<option value="' . $room->id . '">' . $room->number . '</option>';
                 }
                 ?>
             </select>
@@ -278,7 +278,7 @@ header h1 {
               <option value="-">-</option>
               <?php
                 foreach ($doctors as $doctor) {
-                    echo '<option value="' . $doctor->name . '">' . $doctor->name . '</option>';
+                    echo '<option value="' . $doctor->id . '">' . $doctor->name . '</option>';
                 }
                 ?>
             </select>
@@ -297,7 +297,18 @@ header h1 {
                 <option value="Legacy">Nəğd</option>
                 <?php
                 foreach ($bills as $bill) {
-                    echo '<option value="' . $bill->name . '">' . $bill->name . '</option>';
+                    echo '<option value="' . $bill->id . '">' . $bill->name . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="packet">Paket:</label>
+            <select name="packet" id="card-select">
+                <option value="-">-</option>
+                <?php
+                foreach ($packets as $packet) {
+                    echo '<option value="' .$packet->id. '">' . $packet->name . '</option>';
                 }
                 ?>
             </select>
@@ -330,16 +341,26 @@ header h1 {
                 <ul>
                     <li>Ad: {{ $patient->name }}</li>
                     <li>Soyad: {{ $patient->surname }}</li>
-                    <li>Otaq: {{ $patient->room_number }}</li>
-                    <li>Mütəxəssis: {{ $patient->doctor_name }}</li>
+                    <?php
+                        $room = DB::table('rooms')->where('id', $patient->room_id)->first();
+                        $doctor = DB::table('doctors')->where('id', $patient->doctor_id)->first();
+                        $packet = DB::table('packets')->where('id', $patient->packet_id)->first();
+                    ?>
+                    <li>Otaq: {{ $room->number }}</li>
+                    <li>Mütəxəssis: {{ $doctor->name }}</li>
                     <li>Tarix: {{ $patient->date }}</li>
                     <li>Qiymət: {{ $patient->price }}AZN</li>
-                    @if($patient->bill_type == 'Legacy')
+                    @if($patient->bill_id == 1)
                         <li>Ödəniş növü: Nəğd </li>
                     @else
                         <li>Ödəniş növü: Kart</li>
                     @endif
                     <li>Telefon: {{ $patient->phone }}</li>
+                    @if($patient->packet_id == 1)
+                        <li>Paket: Yoxdur</li>
+                    @else
+                        <li>Paket: {{ $packet->name }}</li>
+                    @endif
                 </ul>
                 </div>
             </div>

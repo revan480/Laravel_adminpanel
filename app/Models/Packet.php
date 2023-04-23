@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
-class Bill extends Model
+class Packet extends Model
 {
     use CrudTrait;
     use HasFactory;
@@ -19,7 +18,7 @@ class Bill extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'bills';
+    protected $table = 'packets';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -39,7 +38,7 @@ class Bill extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function patients():HasMany{
+    public function patients():HasMany {
         return $this->hasMany(Patient::class);
     }
 

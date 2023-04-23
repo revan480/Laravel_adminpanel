@@ -23,4 +23,5 @@ Route::group([
     Route::crud('bill', 'BillCrudController');
     Route::get('checkout', 'CheckoutController@index')->name('page.checkout.index');
     Route::crud('patient', 'PatientCrudController');
+    Route::crud('packet', 'PacketCrudController');
 }); // this should be the absolute last line of this file

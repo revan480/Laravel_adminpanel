@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\PatientRequest;
+use App\Http\Requests\PacketRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class PatientCrudController
+ * Class PacketCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class PatientCrudController extends CrudController
+class PacketCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class PatientCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Patient::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/patient');
-        CRUD::setEntityNameStrings('patient', 'patients');
+        CRUD::setModel(\App\Models\Packet::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/packet');
+        CRUD::setEntityNameStrings('packet', 'packets');
     }
 
     /**
@@ -41,50 +41,8 @@ class PatientCrudController extends CrudController
     {
         CRUD::column('id');
         CRUD::column('name');
-        CRUD::column('surname');
-        CRUD::column('phone');
-        CRUD::column('area');
-        CRUD::column('price');
-        CRUD::addColumn(
-            [
-                'name' => 'doctor_id',
-                'type' => 'select',
-                'label' => 'Doctor',
-                'entity' => 'doctor',
-                'attribute' => 'name',
-                'model' => 'App\Models\Doctor',
-            ]
-        );
-        CRUD::addColumn(
-            [
-                'name' => 'room_id',
-                'type' => 'select',
-                'label' => 'Room',
-                'entity' => 'room',
-                'attribute' => 'number',
-                'model' => 'App\Models\Room',
-            ]
-        );
-        CRUD::addColumn(
-            [
-                'name' => 'bill_id',
-                'type' => 'select',
-                'label' => 'Bill',
-                'entity' => 'bill',
-                'attribute' => 'type',
-                'model' => 'App\Models\Bill',
-            ]
-        );
-        CRUD::addColumn([
-            'name' => 'packet_id',
-            'type' => 'select',
-            'label' => 'Packet',
-            'entity' => 'packet',
-            'attribute' => 'name',
-            'model' => 'App\Models\Packet',
-        ]);
-        CRUD::column('feedback');
-        CRUD::column('date');
+        // CRUD::column('created_at');
+        // CRUD::column('updated_at');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -102,15 +60,6 @@ class PatientCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::field('surname');
-        CRUD::field('phone');
-        CRUD::field('area');
-        CRUD::field('price');
-        CRUD::field('doctor_id');
-        // CRUD::field('room_id');
-        // CRUD::field('bill_id');
-        CRUD::field('feedback');
-        CRUD::field('date');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

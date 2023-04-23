@@ -20,10 +20,13 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin'),
         ]);
 
-        // Call another seed
         $this->call([
             DoctorSeeder::class,
+            BillSeeder::class,
+            PacketSeeder::class,
+            RoomSeeder::class,
             PatientSeeder::class,
         ]);
+
     }
 }

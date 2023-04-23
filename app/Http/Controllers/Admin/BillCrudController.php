@@ -45,7 +45,6 @@ class BillCrudController extends CrudController
             'cash' => 'Nəğd',
             'card' => 'Kart',
         ]);
-        // CRUD::column('type');
         // CRUD::column('created_at');
         // CRUD::column('updated_at');
 

@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('phone');
             $table->string('area');
             $table->string('price');
-            $table->string('doctor_name');
-            $table->string('room_number');
-            $table->string('bill_type');
+            $table->foreignId('doctor_id')->constrained();
+            $table->foreignId('room_id')->constrained();
+            $table->foreignId('bill_id')->constrained();
+            $table->foreignId('packet_id')->constrained()->nullable();
             $table->text('feedback')->nullable();
             $table->timestamp('date')->nullable();
             $table->timestamps();
