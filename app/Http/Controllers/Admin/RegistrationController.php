@@ -52,18 +52,20 @@ class RegistrationController extends Controller
         // dd($request->bill_id);
 
         // Add all the information to the tables
-        $patient = Patient::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'phone' => $request->phone,
-            'area' => $request->area,
-            'price' => $request->price,
-            'doctor_id' => $request->doctor,
-            'room_id' => $request->room,
-            'bill_id' => $request->bill ?? $bill_id,
-            'packet_id' => $request->packet,
-            'feedback' => $request->feedback,
-        ]);
+
+        // Add to patients table
+        $patient = new Patient();
+        $patient->name = $request->name;
+        $patient->surname = $request->surname;
+        $patient->phone = $request->phone;
+        $patient->area = $request->area;
+        $patient->price = $request->price;
+        $patient->doctor_id = $request->doctor;
+        $patient->room_id = $request->room;
+        $patient->bill_id = $request->bill ?? $bill_id;
+        $patient->packet_id = $request->packet;
+        $patient->feedback = $request->feedback;
+        $patient->save();
         return redirect()->route('page.registration.index')->with('success', 'Patient registered successfully!');
     }
 }
