@@ -13,7 +13,7 @@ class BillSeeder extends Seeder
     public function run(): void
     {
         // Create 10 instances
-        \App\Models\Bill::factory()->count(10)->create();
+        \App\Models\Bill::factory()->create();
 
     }
 }

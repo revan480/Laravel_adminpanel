@@ -50,7 +50,8 @@ class RegistrationController extends Controller
         ]);
         // dd($request->bill);
 
-        // Add all the information to the tables
+        $bill_id = DB::table('bills')->first()->id;
+        // dd($request->bill);
 
         // Add to patients table
         $patient = new Patient();
@@ -61,7 +62,11 @@ class RegistrationController extends Controller
         $patient->price = $request->price;
         $patient->doctor_id = $request->doctor;
         $patient->room_id = $request->room;
-        $patient->bill_id = $request->bill;
+        // If $request->bill is equal to 1 write the value of bill_id
+        // Else write the value of $request->bill
+        // Since all the other field will have the value more that 1 we can use it
+        // Also first raw should be Nəğd without any name in it
+        $patient->bill_id = $request->bill == 1 ? $bill_id : $request->bill;
         $patient->packet_id = $request->packet;
         $patient->feedback = $request->feedback;
         $patient->save();

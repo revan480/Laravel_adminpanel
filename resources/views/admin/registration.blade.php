@@ -190,7 +190,7 @@
                     <label for="inputCard">Ödəniş növü</label>
                     <select class="form-control" id="inputCard" name="bill" required>
                         <option value="">Ödəniş növünü seçin</option>
-                        <option value="4">Nəğd</option>
+                        <option value="1">Nəğd</option>
                         <?php
                             foreach($bills as $bill){
                                 if($bill->type == 'card')

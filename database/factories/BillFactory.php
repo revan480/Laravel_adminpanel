@@ -18,7 +18,7 @@ class BillFactory extends Factory
     {
         return [
             // Fill all the fields
-            'name' => $this->faker->name,
+            'name' => "",
             'type' => 'Nəğd',
         ];
     }
