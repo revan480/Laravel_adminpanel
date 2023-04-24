@@ -101,7 +101,8 @@ class PatientCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        // Add comments to each line
+        // Add id as autoincrement with default value
+
         CRUD::addField(
             [
                 'name' => 'name',
@@ -167,8 +168,6 @@ class PatientCrudController extends CrudController
                 'model' => 'App\Models\Bill',
             ]
         );
-
-
         CRUD::addField(
             [
                 'name' => 'packet_id',

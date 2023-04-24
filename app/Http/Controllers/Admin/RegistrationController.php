@@ -48,8 +48,7 @@ class RegistrationController extends Controller
             'packet' => 'nullable',
             'feedback' => 'nullable',
         ]);
-        $bill_id = DB::table('bills')->first()->id;
-        // dd($request->bill_id);
+        // dd($request->bill);
 
         // Add all the information to the tables
 
@@ -62,7 +61,7 @@ class RegistrationController extends Controller
         $patient->price = $request->price;
         $patient->doctor_id = $request->doctor;
         $patient->room_id = $request->room;
-        $patient->bill_id = $request->bill ?? $bill_id;
+        $patient->bill_id = $request->bill;
         $patient->packet_id = $request->packet;
         $patient->feedback = $request->feedback;
         $patient->save();
