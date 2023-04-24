@@ -69,6 +69,7 @@ class RegistrationController extends Controller
         // Also first raw should be Nəğd without any name in it
         $patient->bill_id = $request->bill == 1 ? $bill_id : $request->bill;
         $patient->packet_id = $request->packet == 1 ? $packet_id : $request->packet;
+        $patient->date = $request->date;
         $patient->feedback = $request->feedback;
         $patient->save();
         return redirect()->route('page.registration.index')->with('success', 'Patient registered successfully!');
