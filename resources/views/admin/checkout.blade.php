@@ -300,7 +300,7 @@ header h1 {
             <label for="card">Ödəniş növü:</label>
             <select name="card" id="card-select">
                 <option value="-">-</option>
-                <option value="1">Nəğd</option>
+                <option value="4">Nəğd</option>
                 <?php
                 foreach ($bills as $bill) {
                     if($bill->type!='Nəğd')
