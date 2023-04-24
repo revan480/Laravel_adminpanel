@@ -18,7 +18,7 @@ class PacketFactory extends Factory
     {
         return [
             // Call the packet with random name
-            'name' => $this->faker->randomElement(['Standart', 'Premium', 'Gold', 'Yoxdur']),
+            'name' => 'Yoxdur',
         ];
     }
 }

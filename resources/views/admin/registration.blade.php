@@ -202,7 +202,7 @@
                 <div class="form-group col-md-4">
                     <label for="inputPacket">Paket</label>
                     <select class="form-control" id="inputPacket" name="packet">
-                        <option value="">Paket seçin</option>
+                        <option value="1">Paket Yoxdur</option>
                         <?php
                             foreach ($packets as $packet) {
                                 echo '<option value="'.$packet->id.'">Paket '.$packet->name.'</option>';

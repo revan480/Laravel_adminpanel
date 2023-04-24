@@ -372,7 +372,7 @@ header h1 {
                         <li>Ödəniş növü: Kart</li>
                     @endif
                     <li>Telefon: {{ $patient->phone }}</li>
-                    @if($patient->packet_id == 1)
+                    @if($patient->packet_id == $packet_id)
                         <li>Paket: Yoxdur</li>
                     @else
                         <li>Paket: {{ $packet->name }}</li>

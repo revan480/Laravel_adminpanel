@@ -51,6 +51,7 @@ class RegistrationController extends Controller
         // dd($request->bill);
 
         $bill_id = DB::table('bills')->first()->id;
+        $packet_id = DB::table('packets')->first()->id;
         // dd($request->bill);
 
         // Add to patients table
@@ -67,7 +68,7 @@ class RegistrationController extends Controller
         // Since all the other field will have the value more that 1 we can use it
         // Also first raw should be Nəğd without any name in it
         $patient->bill_id = $request->bill == 1 ? $bill_id : $request->bill;
-        $patient->packet_id = $request->packet;
+        $patient->packet_id = $request->packet == 1 ? $packet_id : $request->packet;
         $patient->feedback = $request->feedback;
         $patient->save();
         return redirect()->route('page.registration.index')->with('success', 'Patient registered successfully!');
