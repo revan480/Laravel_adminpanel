@@ -48,6 +48,7 @@ class RegistrationController extends Controller
             'packet' => 'nullable',
             'feedback' => 'nullable',
         ]);
+        $bill_id = DB::table('bills')->first()->id;
 
         // Add all the information to the tables using DB
         DB::table('patients')->insert([
@@ -59,7 +60,7 @@ class RegistrationController extends Controller
             'doctor_id' => $request->doctor,
             'room_id' => $request->room,
             'bill_id' => $request->bill,
-            'packet_id' => $request->packet == null ? 4 : $request->packet,
+            'packet_id' => $request->packet == null ? $bill_id : $request->packet,
             'feedback' => $request->feedback,
             'date' => $request->date,
         ]);
