@@ -49,9 +49,10 @@ class RegistrationController extends Controller
             'feedback' => 'nullable',
         ]);
         $bill_id = DB::table('bills')->first()->id;
+        // dd($request->bill_id);
 
-        // Add all the information to the tables using DB
-        DB::table('patients')->insert([
+        // Add all the information to the tables
+        $patient = Patient::create([
             'name' => $request->name,
             'surname' => $request->surname,
             'phone' => $request->phone,
@@ -59,12 +60,10 @@ class RegistrationController extends Controller
             'price' => $request->price,
             'doctor_id' => $request->doctor,
             'room_id' => $request->room,
-            'bill_id' => $request->bill,
-            'packet_id' => $request->packet == null ? $bill_id : $request->packet,
+            'bill_id' => $request->bill ?? $bill_id,
+            'packet_id' => $request->packet,
             'feedback' => $request->feedback,
-            'date' => $request->date,
         ]);
-
         return redirect()->route('page.registration.index')->with('success', 'Patient registered successfully!');
     }
 }
