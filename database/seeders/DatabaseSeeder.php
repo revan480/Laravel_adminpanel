@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             DoctorSeeder::class,
-            BillSeeder::class,
+            // BillSeeder::class,
             PacketSeeder::class,
             RoomSeeder::class,
             // PatientSeeder::class,

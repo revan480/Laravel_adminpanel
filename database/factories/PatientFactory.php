@@ -33,8 +33,8 @@ class PatientFactory extends Factory
             'price' => $this->faker->randomElement([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]),
             'doctor_id' => $this->faker->numberBetween(1, 6),
             'room_id' => $this->faker->numberBetween(1,10),
-            'bill_id' => $this->faker->numberBetween(1,10),
-            'packet_id' => $this->faker->numberBetween(1,10),
+            'bill_id' => $this->faker->numberBetween(1,2),
+            'packet_id' => $this->faker->numberBetween(1,3),
             'feedback' => $this->faker->text(100),
             'date' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];

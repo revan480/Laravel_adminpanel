@@ -13,6 +13,6 @@ class PacketSeeder extends Seeder
     public function run(): void
     {
         // Create 10 instances
-        \App\Models\Packet::factory()->count(10)->create();
+        \App\Models\Packet::factory()->count(3)->create();
     }
 }
