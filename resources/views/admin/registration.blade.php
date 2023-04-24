@@ -200,7 +200,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="inputPacket">Paket (İstəyə bağlı)</label>
+                    <label for="inputPacket">Paket</label>
                     <select class="form-control" id="inputPacket" name="packet">
                         <option value="">Paket seçin</option>
                         <?php

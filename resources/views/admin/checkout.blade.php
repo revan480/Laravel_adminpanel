@@ -27,12 +27,12 @@ body {
 }
 
 /* Header styles */
-/* header {
+header {
   background-color: #333;
   color: #fff;
   padding: 20px;
   text-align: center;
-} */
+}
 
 header h1 {
   margin: 0;
@@ -230,9 +230,11 @@ header h1 {
     display: none;
 }
 .container {
-  height: 500px; /* set the height of the container as needed */
+  height: 790px; /* set the height of the container as needed */
   overflow-y: scroll; /* add a vertical scroll to the container */
 }
+
+
 
 /* Media queries */
 @media screen and (max-width: 768px) {
@@ -249,11 +251,13 @@ header h1 {
     width: 100%;
     margin-right: 0;
   }
+  .btn-primary {
+    margin-left: 10px;
+  }
 }
-
 </style>
 <body>
-<div id="total-price" style="background: linear-gradient(to right, #258100, #ff8c00); color: white; width: 100%; max-width: 1800px; font-size: 32px; text-align: center; padding: 15px; padding-left: 10px; margin-top: 20px; border-radius: 5px; display: flex; justify-content: center; margin-left: auto; margin-right: auto;">Cəmi: {{$total_bill}} AZN</div>
+    <div id="total-price" style="background: linear-gradient(to right, #43cea2, #185a9d); color: white; width: 100%; max-width: 1800px; font-size: 32px; text-align: center; padding: 15px; padding-left: 10px; margin-top: 20px; border-radius: 5px; display: flex; justify-content: center; margin-left: auto; margin-right: auto;">Cəmi: {{$total_bill}} AZN</div>
 
 <div class="container" style="margin-top: 10px;">
   <div class="row">
@@ -262,7 +266,7 @@ header h1 {
         @csrf
         <div class="room-selector">
           <label for="room-select">Otaq:</label>
-          <select id="room-select" name="room_selector" onchange="myFunction()">
+          <select id="room-select" name="room_selector">
               <option value="-">-</option>
               <?php
                 foreach ($rooms as $room) {
@@ -388,11 +392,6 @@ header h1 {
         card.style.display = 'none'; // Otherwise, hide the card
       }
     });
-  });
-
-
-
-
     $('.collapse').collapse()
     $('#myCollapsible').collapse({
       toggle: false
@@ -427,7 +426,6 @@ header h1 {
         alert(customerInfo);
       });
     });
-  });
 
   // Get references to the card container and pagination element
   const cardContainer = document.getElementById('card-container');
