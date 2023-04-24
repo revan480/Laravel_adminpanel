@@ -398,6 +398,8 @@ class CheckoutController extends Controller
             'bills' => DB::table('bills')->get(),
             'packets' => DB::table('packets')->get(),
             'total_bill' => $total_bill,
+            'bill_id' => DB::table('bills')->first()->id,
+            'packet_id' => DB::table('packets')->first()->id,
         ]);
     }
 }

@@ -301,7 +301,8 @@ header h1 {
                 <option value="Legacy">Nəğd</option>
                 <?php
                 foreach ($bills as $bill) {
-                    echo '<option value="' . $bill->id . '">' . $bill->name . '</option>';
+                    if($bill->type!='Nəğd')
+                        echo '<option value="' . $bill->id . '">' . $bill->name . '</option>';
                 }
                 ?>
             </select>
