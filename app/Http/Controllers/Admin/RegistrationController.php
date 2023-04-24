@@ -59,32 +59,10 @@ class RegistrationController extends Controller
             'doctor_id' => $request->doctor,
             'room_id' => $request->room,
             'bill_id' => $request->bill,
-            'packet_id' => $request->packet == null ? 1 : $request->packet,
+            'packet_id' => $request->packet == null ? 4 : $request->packet,
             'feedback' => $request->feedback,
             'date' => $request->date,
         ]);
-
-        // $patient = new Patient();
-
-        // $patient->name = $request->name;
-        // $patient->surname = $request->surname;
-        // $patient->phone = $request->phone;
-        // $patient->area = $request->area;
-        // $patient->price = $request->price;
-        // $patient->doctor_id = $request->doctor;
-        // $patient->room_id = $request->room;
-        // $patient->bill_id = $request->bill;
-        // if($request->packet == null){
-        //     $patient->packet_id = 1;
-        // }
-        // else{
-        //     $patient->packet_id = $request->packet;
-        // }
-        // $patient->feedback = $request->feedback;
-        // $patient->date = $request->date;
-
-        // $patient->save();
-
 
         return redirect()->route('page.registration.index')->with('success', 'Patient registered successfully!');
     }
