@@ -205,7 +205,8 @@
                         <option value="1">Paket Yoxdur</option>
                         <?php
                             foreach ($packets as $packet) {
-                                echo '<option value="'.$packet->id.'">Paket '.$packet->name.'</option>';
+                                if($packet->name != 'Yoxdur')
+                                    echo '<option value="'.$packet->id.'">Paket '.$packet->name.'</option>';
                             }
                         ?>
                     </select>
