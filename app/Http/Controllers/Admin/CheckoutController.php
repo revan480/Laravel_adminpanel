@@ -34,6 +34,7 @@ class CheckoutController extends Controller
             'bills' => DB::table('bills')->get(),
             // Take packets from table packets
             'packets' => DB::table('packets')->get(),
+            'bill_id' => DB::table('bills')->first()->id,
             ]);
     }
 

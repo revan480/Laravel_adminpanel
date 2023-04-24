@@ -335,7 +335,15 @@ header h1 {
             <div class="card-header" id="heading{{$i}}">
                 <h5 class="mb-0">
                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">
-                        Ad:{{ $patient->name }}| Telefon: {{ $patient->phone }}| Qiymət:{{ $patient->price }}| Tarix: {{ $patient->date }}
+                        Ad:{{ $patient->name }}| Telefon: {{ $patient->phone }}| Qiymət:{{ $patient->price }}|
+                        <?php
+                            if($patient->date == null){
+                                echo "Tarix: -";
+                            }
+                            else{
+                                echo "Tarix: " . $patient->date;
+                            }
+                        ?>
                     </button>
                 </h5>
             </div>
@@ -352,9 +360,13 @@ header h1 {
                     ?>
                     <li>Otaq: {{ $room->number }}</li>
                     <li>Mütəxəssis: {{ $doctor->name }}</li>
-                    <li>Tarix: {{ $patient->date }}</li>
+                    @if($patient->date == null)
+                        <li>Tarix: -</li>
+                    @else
+                        <li>Tarix: {{ $patient->date }}</li>
+                    @endif
                     <li>Qiymət: {{ $patient->price }}AZN</li>
-                    @if($patient->bill_id == 1)
+                    @if($patient->bill_id == $bill_id)
                         <li>Ödəniş növü: Nəğd </li>
                     @else
                         <li>Ödəniş növü: Kart</li>
