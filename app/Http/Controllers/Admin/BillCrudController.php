@@ -39,6 +39,7 @@ class BillCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::column('id');
         CRUD::column('name');
         // Create a dropdown for type column with only 2 values
         CRUD::column('type')->type('select_from_array')->options([
