@@ -258,7 +258,9 @@ header h1 {
 </style>
 <body>
     <div id="total-price" style="background: linear-gradient(to right, #43cea2, #185a9d); color: white; width: 100%; max-width: 1800px; font-size: 32px; text-align: center; padding: 15px; padding-left: 10px; margin-top: 20px; border-radius: 5px; display: flex; justify-content: center; margin-left: auto; margin-right: auto;">Cəmi: {{$total_bill}} AZN</div>
-
+<?php
+    // dd($bills);
+    ?>
 <div class="container" style="margin-top: 10px;">
   <div class="row">
     <div class="col-md-12">
@@ -298,7 +300,7 @@ header h1 {
             <label for="card">Ödəniş növü:</label>
             <select name="card" id="card-select">
                 <option value="-">-</option>
-                <option value="Legacy">Nəğd</option>
+                <option value="1">Nəğd</option>
                 <?php
                 foreach ($bills as $bill) {
                     if($bill->type!='Nəğd')

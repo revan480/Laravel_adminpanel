@@ -193,7 +193,7 @@
                         <option value="1">Nəğd</option>
                         <?php
                             foreach($bills as $bill){
-                                if($bill->type == 'card')
+                                if($bill->type != 'Nəğd')
                                     echo '<option value="'.$bill->id.'">'.$bill->name.'</option>';
                             }
                         ?>

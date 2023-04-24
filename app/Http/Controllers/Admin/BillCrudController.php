@@ -42,8 +42,8 @@ class BillCrudController extends CrudController
         CRUD::column('name');
         // Create a dropdown for type column with only 2 values
         CRUD::column('type')->type('select_from_array')->options([
-            'cash' => 'Nəğd',
-            'card' => 'Kart',
+            'Nəğd' => 'Nəğd',
+            'Kart' => 'Kart',
         ]);
         // CRUD::column('created_at');
         // CRUD::column('updated_at');
@@ -65,8 +65,8 @@ class BillCrudController extends CrudController
     {
         CRUD::field('name');
         CRUD::field('type')->type('select_from_array')->options([
-            'cash' => 'Nəğd',
-            'card' => 'Kart',
+            'Nəğd' => 'Nəğd',
+            'Kart' => 'Kart',
         ]);
 
         /**
