@@ -42,11 +42,4 @@ class Patient extends Model
     public function packet(): BelongsTo{
         return $this->belongsTo(Packet::class);
     }
-
-    // public static function getDataWithDoctorName(){
-    //     // join tables
-    //     $patients = Patient::join('doctors', 'patients.doctor_id', '=', 'doctors.id')
-    //         ->select('patients.*', 'doctors.name as doctor_name')
-    //         ->get();
-    // }
 }

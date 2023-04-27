@@ -39,7 +39,7 @@ class BillCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
+        CRUD::column('bill_name');
         // Create a dropdown for type column with only 2 values
         CRUD::column('type')->type('select_from_array')->options([
             'Nəğd' => 'Nəğd',
@@ -63,7 +63,7 @@ class BillCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('name');
+        CRUD::field('bill_name');
         CRUD::field('type')->type('select_from_array')->options([
             'Nəğd' => 'Nəğd',
             'Kart' => 'Kart',

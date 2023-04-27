@@ -18,7 +18,7 @@ class BillFactory extends Factory
     {
         return [
             // Fill all the fields
-            'name' => "",
+            'bill_name' => "",
             'type' => 'Nəğd',
         ];
     }

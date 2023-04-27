@@ -365,7 +365,7 @@ class CheckoutController extends Controller
         }
 
         // Return
-        return view('/admin/checkout', [
+        return view('admin.checkout', [
             'patients' => $patients,
             'rooms' => DB::table('rooms')->get(),
             'doctors' => DB::table('doctors')->get(),

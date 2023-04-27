@@ -194,7 +194,7 @@
                         <?php
                             foreach($bills as $bill){
                                 if($bill->type != 'Nəğd')
-                                    echo '<option value="'.$bill->id.'">'.$bill->name.'</option>';
+                                    echo '<option value="'.$bill->id.'">'.$bill->bill_name.'</option>';
                             }
                         ?>
                     </select>
