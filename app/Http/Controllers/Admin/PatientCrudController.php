@@ -76,7 +76,7 @@ class PatientCrudController extends CrudController
 
         CRUD::addColumns([
             [
-                'name' => 'bill_id',
+                // 'name' => 'bill_id',
                 'type' => 'select',
                 'label' => 'Bill Type',
                 'entity' => 'bill',
