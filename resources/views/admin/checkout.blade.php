@@ -380,6 +380,10 @@ header h1 {
                     @else
                         <li>Paket: {{ $packet->name }}</li>
                     @endif
+                    <br>
+
+                    {{-- Edit button --}}
+                    <a href="{{('patient/'.$patient->id.'/edit')}}" class="btn btn-primary">Redaktə et</a>
                 </ul>
                 </div>
             </div>
