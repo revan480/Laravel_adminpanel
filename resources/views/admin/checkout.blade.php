@@ -354,9 +354,6 @@ header h1 {
                 <div class="card-body">
                 {{-- Create a list --}}
                 <ul>
-                    <li>
-                        Id: {{ $patient->id}}
-                    </li>
                     <li>Ad: {{ $patient->name }}</li>
                     <li>Soyad: {{ $patient->surname }}</li>
                     <?php
