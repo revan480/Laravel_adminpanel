@@ -354,6 +354,9 @@ header h1 {
                 <div class="card-body">
                 {{-- Create a list --}}
                 <ul>
+                    <li>
+                        Id: {{ $patient->id}}
+                    </li>
                     <li>Ad: {{ $patient->name }}</li>
                     <li>Soyad: {{ $patient->surname }}</li>
                     <?php
@@ -383,7 +386,7 @@ header h1 {
                     <br>
 
                     {{-- Edit button --}}
-                    <a href="{{('patient/'.$patient->id.'/edit')}}" class="btn btn-primary">Redaktə et</a>
+                    <a href="{{backpack_url('patient/'.$patient->id.'/edit')}}" class="btn btn-primary">Redaktə et</a>
                 </ul>
                 </div>
             </div>
