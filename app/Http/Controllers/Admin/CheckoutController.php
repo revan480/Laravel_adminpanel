@@ -14,6 +14,7 @@ class CheckoutController extends Controller
 {
     public function index()
     {
+        // dd(DB::table('patients')->get());
         return view('admin.checkout', [
             'title' => 'Checkout',
             'breadcrumbs' => [
@@ -26,8 +27,8 @@ class CheckoutController extends Controller
             'rooms' => DB::table('rooms')->get(),
             // Take doctors from table doctors
             'doctors' => DB::table('doctors')->get(),
-            // Take patients from table patients
-            'patients' => DB::table('patients')->get(),
+            // Take patients from table patients by using pagination so that patients would appear 10 by 10
+            'patients' => DB::table('patients')->paginate(10),
             // Take total bill from table patients
             'total_bill' => DB::table('patients')->sum('price'),
             // Take bill from table bills
@@ -366,7 +367,9 @@ class CheckoutController extends Controller
             }
 
         }
-        // dd($patients);
+        dd($patients);
+
+
 
         // Return
         return view('admin.checkout', [
