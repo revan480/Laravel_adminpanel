@@ -182,70 +182,71 @@
         @endif
 
         <!-- Begin Page Content -->
-            <div class="card-body">
-                <table id="checkout_table" class="table table-bordered table-striped table-hover datatable datatable-booking" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Xəstə adi</th>
-                            <th>Xəstə soyadi</th>
-                            <th>Otaq</th>
-                            <th>Mütəxəssis</th>
-                            <th>Giymət</th>
-                            <th>Rezervasiya tarixi</th>
-                            <th>Ödəniş növü</th>
-                            <th>Paket</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($patients as $patient)
-                        <tr data-entry-id="{{ $patient->id }}">
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $patient->name }}</td>
-                            <td>{{ $patient->surname }}</td>
-                            <?php
-                                $room = DB::table('rooms')->where('id', $patient->room_id)->first();
-                            ?>
-                            <td>{{ $room->number }}</td>
-                            <?php
-                                $doctor = DB::table('doctors')->where('id', $patient->doctor_id)->first();
-                            ?>
-                            <td>{{ $doctor->name }}</td>
-                            <td>{{ $patient->price }}</td>
-                            <td>{{ $patient->date}}</td>
-                            <?php
-                                if($patient->bill_id == $bill_id)
-                                    echo "<td>Nəğd</td>";
-                                elseif ($patient->bill_id == 34) {
-                                    echo "<td>Borc</td>";
-                                }
-                                else
-                                    echo "<td>Kart</td>";
-                            ?>
-                            <?php
-                                $packet = DB::table('packets')->where('id', $patient->packet_id)->first();
-                            ?>
-                            @if($patient->packet_id == $packet_id)
-                                <td>Yoxdur</td>
-                            @else
-                                <td>{{ $packet->name }}</td>
-                            @endif
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="9" class="text-center">{{ __('İnformasiya yoxdur') }}</td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+        <div class="card-body">
+            <table id="checkout_table" class="table table-bordered table-striped table-hover datatable datatable-booking" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Xəstə adi</th>
+                        <th>Xəstə soyadi</th>
+                        <th>Otaq</th>
+                        <th>Mütəxəssis</th>
+                        <th>Giymət</th>
+                        <th>Rezervasiya tarixi</th>
+                        <th>Ödəniş növü</th>
+                        <th>Paket</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($patients as $patient)
+                    <tr data-entry-id="{{ $patient->id }}">
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $patient->name }}</td>
+                        <td>{{ $patient->surname }}</td>
+                        <?php
+                            $room = DB::table('rooms')->where('id', $patient->room_id)->first();
+                        ?>
+                        <td>{{ $room->number }}</td>
+                        <?php
+                            $doctor = DB::table('doctors')->where('id', $patient->doctor_id)->first();
+                        ?>
+                        <td>{{ $doctor->name }}</td>
+                        <td>{{ $patient->price }}</td>
+                        <td>{{ $patient->date}}</td>
+                        <?php
+                            if($patient->bill_id == $bill_id)
+                                echo "<td>Nəğd</td>";
+                            elseif ($patient->bill_id == 34) {
+                                echo "<td>Borc</td>";
+                            }
+                            else
+                                echo "<td>Kart</td>";
+                        ?>
+                        <?php
+                            $packet = DB::table('packets')->where('id', $patient->packet_id)->first();
+                        ?>
+                        @if($patient->packet_id == $packet_id)
+                            <td>Yoxdur</td>
+                        @else
+                            <td>{{ $packet->name }}</td>
+                        @endif
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="9" class="text-center">{{ __('İnformasiya yoxdur') }}</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
         <!-- /.container-fluid -->
+    </div>
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js" defer="defer"></script>
 <script>
     $(document).ready(function() {
-        $("#checkout_table").DataTable({
+        var dataTable = $("#checkout_table").DataTable({
             "stateSave": true,
             "pagingType": 'full_numbers',
             "language": {
@@ -257,9 +258,17 @@
                     "last": "Son"
                 },
                 "info": "Cəmi _TOTAL_ sətirdən _START_-dən _END_-ə qədər göstərilir",
-            }
+            },
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         });
-    } );
+
+        $('#checkout_table_filter').hide(); // Hide default search box
+
+        $('#checkout_table_length').on('change', function() {
+            var value = $(this).val();
+            dataTable.page.len(value).draw();
+        });
+    });
 </script>
 </html>
 @endsection
