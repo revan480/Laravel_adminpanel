@@ -241,10 +241,10 @@
             @endforelse
         </tbody>
     </table>
-
     <div class="d-flex justify-content-end">
         {{ $patients->links() }}
     </div>
+
 </div>
 
         <!-- /.container-fluid -->
