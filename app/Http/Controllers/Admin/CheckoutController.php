@@ -367,9 +367,6 @@ class CheckoutController extends Controller
             }
 
         }
-        dd($patients);
-
-
 
         // Return
         return view('admin.checkout', [
