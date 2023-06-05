@@ -248,6 +248,8 @@
     $(document).ready(function() {
         var dataTable = $("#checkout_table").DataTable({
             "stateSave": true,
+            // Show Search
+            "search": true,
             "pagingType": 'full_numbers',
             "language": {
                 "emptyTable": "İnformasiya yoxdur",
@@ -261,8 +263,6 @@
             },
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         });
-
-        $('#checkout_table_filter').hide(); // Hide default search box
 
         $('#checkout_table_length').on('change', function() {
             var value = $(this).val();

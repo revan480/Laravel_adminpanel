@@ -173,7 +173,7 @@ class PatientCrudController extends CrudController
                 'type' => 'select',
                 'label' => 'Hesab',
                 'entity' => 'bill',
-                'attribute' => 'bill_name',
+                'attribute' => 'bill_name', 
                 'model' => 'App\Models\Bill',
             ]
         );
