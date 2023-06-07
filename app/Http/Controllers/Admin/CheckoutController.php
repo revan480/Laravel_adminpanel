@@ -14,7 +14,7 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        // dd(DB::table('patients')->get());
+        // dd(DB::table('bills')->get());
         return view('admin.checkout', [
             'title' => 'Checkout',
             'breadcrumbs' => [

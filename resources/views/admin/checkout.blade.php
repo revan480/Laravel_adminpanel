@@ -143,11 +143,9 @@
             <label for="card">Ödəniş növü:</label>
             <select name="card" id="card-select">
                 <option value="">-</option>
-                <option value="4">Nəğd</option>
                 <?php
                 foreach ($bills as $bill) {
-                    if($bill->type!='Nəğd')
-                        echo '<option value="' . $bill->bill_name . '">' . $bill->bill_name . '</option>';
+                    echo '<option value="' . $bill->bill_name . '">' . $bill->bill_name . '</option>';
                 }
                 ?>
             </select>
@@ -303,9 +301,7 @@
                 column3.search(val).draw();
             });
 
-            column3.data().unique().sort().each(function(d, j) {
-                select_room.append('<option value="' + d + '">' + d + "</option>");
-            });
+            column3.data().unique().sort()
 
             // Doctor
             var select_doctor = $("#doctor-name").on("change", function() {
@@ -314,9 +310,7 @@
                 column4.search(val).draw();
             });
 
-            column4.data().unique().sort().each(function(d, j) {
-                select_doctor.append('<option value="' + d + '">' + d + "</option>");
-            });
+            column4.data().unique().sort()
 
             // Bill
             var select_bill = $("#card-select").on("change", function() {
@@ -325,9 +319,7 @@
                 column7.search(val).draw();
             });
 
-            column7.data().unique().sort().each(function(d, j) {
-                select_bill.append('<option value="' + d + '">' + d + "</option>");
-            });
+            column7.data().unique().sort();
 
             // Packet
             var select_packet = $("#packet-select").on("change", function() {
@@ -336,9 +328,7 @@
                 column8.search(val).draw();
             });
 
-            column8.data().unique().sort().each(function(d, j) {
-                select_packet.append('<option value="' + d + '">' + d + "</option>");
-            });
+            column8.data().unique().sort()
         },
     });
 });
