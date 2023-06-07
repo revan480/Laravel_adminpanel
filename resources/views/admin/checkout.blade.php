@@ -282,7 +282,7 @@
     $(document).ready(function () {
     $('#checkout_table').DataTable({
         // Save the state
-        "stateSave": false,
+        "stateSave": true,
         // No "show number of entries" field
         "lengthChange": false,
         // No text under the table
@@ -360,6 +360,62 @@
         },
     });
 });
+
+
+// Create a variable for all selectors with their ids
+var room_select = document.getElementById("room-select");
+var doctor_select = document.getElementById("doctor-name");
+var card_select = document.getElementById("card-select");
+var packet_select = document.getElementById("packet-select");
+
+room_select.addEventListener("change", function() {
+  var selectedValue = room_select.value;
+  localStorage.setItem("selectedValueRoom", selectedValue);
+});
+
+var storedValueRoom = localStorage.getItem("selectedValueRoom");
+
+if(storedValueRoom){
+    room_select.value = storedValueRoom;
+}
+
+
+doctor_select.addEventListener("change", function() {
+  var selectedValue = doctor_select.value;
+  localStorage.setItem("selectedValueDoctor", selectedValue);
+});
+
+var storedValueDoctor = localStorage.getItem("selectedValueDoctor");
+
+if(storedValueDoctor){
+    doctor_select.value = storedValueDoctor;
+}
+
+
+card_select.addEventListener("change", function() {
+  var selectedValue = card_select.value;
+  localStorage.setItem("selectedValueCard", selectedValue);
+});
+
+var storedValueCard = localStorage.getItem("selectedValueCard");
+
+if(storedValueCard){
+    card_select.value = storedValueCard;
+}
+
+
+packet_select.addEventListener("change", function() {
+  var selectedValue = packet_select.value;
+  localStorage.setItem("selectedValuePacket", selectedValue);
+});
+
+var storedValuePacket = localStorage.getItem("selectedValuePacket");
+
+if(storedValuePacket){
+    packet_select.value = storedValuePacket;
+}
+
+
 
 </script>
 </html>
