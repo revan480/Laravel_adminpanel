@@ -101,6 +101,9 @@
     .btn-primary {
         margin-left: 10px;
     }
+    #total-price:hover{
+        cursor: pointer;
+    }
 }
 </style>
 <body>
@@ -265,20 +268,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js" defer="defer"></script>
 <script>
-
-    // $(document).ready(function() {
-    //     $("#checkout_table").DataTable({
-    //         // Save the state
-    //         "stateSave": false,
-    //         // No "show number of entries" field
-    //         "lengthChange": false,
-    //         // No text under the table
-    //         "info": false,
-    //         // No pagination
-    //         "paging": false,
-    //     })
-    // });
-
     $(document).ready(function () {
     $('#checkout_table').DataTable({
         // Save the state
@@ -330,33 +319,45 @@
 
             var total_bill = 0;
 
-        // Function to calculate the total bill
-        function calculateTotalBill() {
-            total_bill = 0;
+            // Function to calculate the total bill
+            function calculateTotalBill() {
+                total_bill = 0;
 
-            // Iterate over the visible rows
-            $('#checkout_table tbody tr:visible').each(function () {
-                var row = $(this);
-                var price = parseInt(row.find('td:nth-child(6)').text());
-                total_bill += price;
+                // Iterate over the visible rows
+                $('#checkout_table tbody tr:visible').each(function () {
+                    var row = $(this);
+                    var price = parseInt(row.find('td:nth-child(6)').text());
+                    total_bill += price;
+                });
+
+                // If the value is 0 or Nan write 0
+                if (isNaN(total_bill) || total_bill === 0) {
+                    total_bill = 0;
+                }
+                $("#total-price").html("Cəmi: " + total_bill + " AZN");
+
+                return total_bill;
+            }
+
+            // Call the calculateTotalBill function initially
+            calculateTotalBill();
+
+            // Event listener for table redraw
+            $('#checkout_table').on('draw.dt', function () {
+                calculateTotalBill();
             });
 
-            // If the value is 0 or Nan write 0
-            if (isNaN(total_bill) || total_bill === 0) {
-                total_bill = 0;
-            }
-            $("#total-price").html("Cəmi: " + total_bill + " AZN");
-
-
-        }
-
-        // Call the calculateTotalBill function initially
-        calculateTotalBill();
-
-        // Event listener for table redraw
-        $('#checkout_table').on('draw.dt', function () {
-            calculateTotalBill();
-        });
+            var overall_bill = {!! json_encode($total_bill) !!};
+            var checkout_show = document.getElementById("total-price");
+            // onclick change the value from total_bill to overall_bill and vice versa
+            checkout_show.addEventListener("click", function() {
+                if(checkout_show.innerHTML == "Ümumi məbləğ: " + overall_bill + " AZN"){
+                    checkout_show.innerHTML = "Cəmi: " + calculateTotalBill() + " AZN";
+                }
+                else{
+                    checkout_show.innerHTML = "Ümumi məbləğ: " + overall_bill + " AZN";
+                }
+            });
         },
     });
 });
@@ -414,8 +415,6 @@ var storedValuePacket = localStorage.getItem("selectedValuePacket");
 if(storedValuePacket){
     packet_select.value = storedValuePacket;
 }
-
-
 
 </script>
 </html>
