@@ -163,9 +163,6 @@
                 ?>
             </select>
         </div>
-        <div class="form-group">
-          <input type="submit" value="Search" class="btn btn-primary">
-        </div>
 
       </form>
   </div>
