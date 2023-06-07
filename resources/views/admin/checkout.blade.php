@@ -341,7 +341,13 @@
                 total_bill += price;
             });
 
+            // If the value is 0 or Nan write 0
+            if (isNaN(total_bill) || total_bill === 0) {
+                total_bill = 0;
+            }
             $("#total-price").html("Cəmi: " + total_bill + " AZN");
+
+
         }
 
         // Call the calculateTotalBill function initially
