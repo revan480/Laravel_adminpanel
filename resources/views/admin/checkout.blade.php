@@ -104,7 +104,7 @@
 }
 </style>
 <body>
-    <div id="total-price" style="background: linear-gradient(to right, #43cea2, #185a9d); color: white; width: 100%; max-width: 1800px; font-size: 32px; text-align: center; padding: 15px; padding-left: 10px; margin-top: 20px; border-radius: 5px; display: flex; justify-content: center; margin-left: auto; margin-right: auto;">Cəmi: {{$total_bill}} AZN</div>
+    <div id="total-price" style="background: linear-gradient(to right, #43cea2, #185a9d); color: white; width: 100%; max-width: 1800px; font-size: 32px; text-align: center; padding: 15px; padding-left: 10px; margin-top: 20px; border-radius: 5px; display: flex; justify-content: center; margin-left: auto; margin-right: auto;"></div>
 <div class="container" style="margin-top: 10px;">
   <div class="row">
     <div class="col-md-12">
@@ -146,11 +146,11 @@
                 <option value="Nəğd">Nəğd</option>
                 <option value="Kart">Kart</option>
                 <option value="Borc">Borc</option>
-                {{-- <?php
-                foreach ($bills as $bill) {
-                    echo '<option value="' . $bill->bill_name . '">' . $bill->bill_name . '</option>';
-                }
-                ?> --}}
+                <?php
+                // foreach ($bills as $bill) {
+                //     echo '<option value="' . $bill->bill_name . '">' . $bill->bill_name . '</option>';
+                // }
+                ?>
             </select>
         </div>
         <div class="form-group">
@@ -292,15 +292,13 @@
         initComplete: function () {
             var column3 = this.api().column(3); // Specify the index of the column you want to work with (zero-based index)
             var column4 = this.api().column(4); // Specify the index of the column you want to work with (zero-based index)
-            var column6 = this.api().column(6); // Specify the index of the column you want to work with (zero-based index)
+            var column5 = this.api().column(5); // Specify the index of the column you want to work with (zero-based index)
             var column7 = this.api().column(7); // Specify the index of the column you want to work with (zero-based index)
             var column8 = this.api().column(8); // Specify the index of the column you want to work with (zero-based index)
-
 
             // Room
             var select_room = $("#room-select").on("change", function() {
                 var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                console.log(val);
                 column3.search(val).draw();
             });
 
@@ -309,7 +307,6 @@
             // Doctor
             var select_doctor = $("#doctor-name").on("change", function() {
                 var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                console.log(val);
                 column4.search(val).draw();
             });
 
@@ -318,7 +315,6 @@
             // Bill
             var select_bill = $("#card-select").on("change", function() {
                 var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                console.log(val);
                 column7.search(val).draw();
             });
 
@@ -327,11 +323,34 @@
             // Packet
             var select_packet = $("#packet-select").on("change", function() {
                 var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                console.log(val);
                 column8.search(val).draw();
             });
 
             column8.data().unique().sort()
+
+            var total_bill = 0;
+
+        // Function to calculate the total bill
+        function calculateTotalBill() {
+            total_bill = 0;
+
+            // Iterate over the visible rows
+            $('#checkout_table tbody tr:visible').each(function () {
+                var row = $(this);
+                var price = parseInt(row.find('td:nth-child(6)').text());
+                total_bill += price;
+            });
+
+            $("#total-price").html("Cəmi: " + total_bill + " AZN");
+        }
+
+        // Call the calculateTotalBill function initially
+        calculateTotalBill();
+
+        // Event listener for table redraw
+        $('#checkout_table').on('draw.dt', function () {
+            calculateTotalBill();
+        });
         },
     });
 });
