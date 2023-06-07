@@ -143,11 +143,14 @@
             <label for="card">Ödəniş növü:</label>
             <select name="card" id="card-select">
                 <option value="">-</option>
-                <?php
+                <option value="Nəğd">Nəğd</option>
+                <option value="Kart">Kart</option>
+                <option value="Borc">Borc</option>
+                {{-- <?php
                 foreach ($bills as $bill) {
                     echo '<option value="' . $bill->bill_name . '">' . $bill->bill_name . '</option>';
                 }
-                ?>
+                ?> --}}
             </select>
         </div>
         <div class="form-group">
