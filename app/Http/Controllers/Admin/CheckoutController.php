@@ -40,7 +40,7 @@ class CheckoutController extends Controller
             ]);
     }
 
-    public function checkout(Request $request){
+    public function show(Request $request){
         // If request consists of only room show all patients that have this room id
         // dd($request);
         if($request->room_selector != '-' && $request->doctor_name == '-' && $request->card == '-' && $request->packet == '-' &&
@@ -367,16 +367,29 @@ class CheckoutController extends Controller
 
         }
 
+        $rooms = DB::table('rooms')->get();
+        $doctors = DB::table('doctors')->get();
+        $bills = DB::table('bills')->get();
+        $packets = DB::table('packets')->get();
+        $bill_id = DB::table('bills')->first()->id;
+        $packet_id = DB::table('packets')->first()->id;
+
+        return view('admin.checkout', compact('patients', 'rooms', 'doctors', 'bills', 'packets', 'total_bill', 'bill_id', 'packet_id'));
+
         // Return
-        return view('admin.checkout', [
-            'patients' => $patients,
-            'rooms' => DB::table('rooms')->get(),
-            'doctors' => DB::table('doctors')->get(),
-            'bills' => DB::table('bills')->get(),
-            'packets' => DB::table('packets')->get(),
-            'total_bill' => $total_bill,
-            'bill_id' => DB::table('bills')->first()->id,
-            'packet_id' => DB::table('packets')->first()->id,
-        ]);
+        // return redirect()->backpack_url('checkout', [
+        //     'patients' => $patients,
+        //     'rooms' => DB::table('rooms')->get(),
+        //     'doctors' => DB::table('doctors')->get(),
+        //     'bills' => DB::table('bills')->get(),
+        //     'packets' => DB::table('packets')->get(),
+        //     'total_bill' => $total_bill,
+        //     'bill_id' => DB::table('bills')->first()->id,
+        //     'packet_id' => DB::table('packets')->first()->id,
+        // ]);
     }
+
+    // public function show(){
+    //     return 0;
+    // }
 }

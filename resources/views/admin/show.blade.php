@@ -113,10 +113,10 @@
         <div class="room-selector">
           <label for="room-select">Otaq:</label>
           <select id="room-select" name="room_selector">
-              <option value="">-</option>
+              <option value="-">-</option>
               <?php
                 foreach ($rooms as $room) {
-                    echo '<option value="' . $room->number . '">' . $room->number . '</option>';
+                    echo '<option value="' . $room->id . '">' . $room->number . '</option>';
                 }
                 ?>
             </select>
@@ -124,10 +124,10 @@
         <div class="doctor-selector">
             <label for="doctor-name">Həkim adı:</label>
             <select id="doctor-name" name="doctor_name">
-              <option value="">-</option>
+              <option value="-">-</option>
               <?php
                 foreach ($doctors as $doctor) {
-                    echo '<option value="' . $doctor->name . '">' . $doctor->name . '</option>';
+                    echo '<option value="' . $doctor->id . '">' . $doctor->name . '</option>';
                 }
                 ?>
             </select>
@@ -142,23 +142,23 @@
         <div class="form-group">
             <label for="card">Ödəniş növü:</label>
             <select name="card" id="card-select">
-                <option value="">-</option>
+                <option value="-">-</option>
                 <option value="4">Nəğd</option>
                 <?php
                 foreach ($bills as $bill) {
                     if($bill->type!='Nəğd')
-                        echo '<option value="' . $bill->bill_name . '">' . $bill->bill_name . '</option>';
+                        echo '<option value="' . $bill->id . '">' . $bill->bill_name . '</option>';
                 }
                 ?>
             </select>
         </div>
         <div class="form-group">
             <label for="packet">Paket:</label>
-            <select name="packet" id="packet-select">
-                <option value="">-</option>
+            <select name="packet" id="card-select">
+                <option value="-">-</option>
                 <?php
                 foreach ($packets as $packet) {
-                    echo '<option value="' .$packet->name. '">' . $packet->name . '</option>';
+                    echo '<option value="' .$packet->id. '">' . $packet->name . '</option>';
                 }
                 ?>
             </select>
@@ -240,20 +240,6 @@
             </tr>
             @endforelse
         </tbody>
-        <tfoot>
-            <tr>
-                <th>No</th>
-                <th>Xəstə adi</th>
-                <th>Xəstə soyadi</th>
-                <th>Otaq</th>
-                <th>Mütəxəssis</th>
-                <th>Giymət</th>
-                <th>Rezervasiya tarixi</th>
-                <th>Ödəniş növü</th>
-                <th>Paket</th>
-                <th></th>
-            </tr>
-        </tfoot>
     </table>
     <div class="d-flex justify-content-end">
         {{ $patients->links() }}
@@ -267,85 +253,22 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js" defer="defer"></script>
 <script>
-
-    // $(document).ready(function() {
-    //     $("#checkout_table").DataTable({
-    //         // Save the state
-    //         "stateSave": false,
-    //         // No "show number of entries" field
-    //         "lengthChange": false,
-    //         // No text under the table
-    //         "info": false,
-    //         // No pagination
-    //         "paging": false,
-    //     })
-    // });
-
-    $(document).ready(function () {
-    $('#checkout_table').DataTable({
-        // Save the state
-        "stateSave": false,
-        // No "show number of entries" field
-        "lengthChange": false,
-        // No text under the table
-        "info": false,
-        // No pagination
-        "paging": false,
-        initComplete: function () {
-            var column3 = this.api().column(3); // Specify the index of the column you want to work with (zero-based index)
-            var column4 = this.api().column(4); // Specify the index of the column you want to work with (zero-based index)
-            var column6 = this.api().column(6); // Specify the index of the column you want to work with (zero-based index)
-            var column7 = this.api().column(7); // Specify the index of the column you want to work with (zero-based index)
-            var column8 = this.api().column(8); // Specify the index of the column you want to work with (zero-based index)
-
-
-            // Room
-            var select_room = $("#room-select").on("change", function() {
-                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                console.log(val);
-                column3.search(val).draw();
-            });
-
-            column3.data().unique().sort().each(function(d, j) {
-                select_room.append('<option value="' + d + '">' + d + "</option>");
-            });
-
-            // Doctor
-            var select_doctor = $("#doctor-name").on("change", function() {
-                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                console.log(val);
-                column4.search(val).draw();
-            });
-
-            column4.data().unique().sort().each(function(d, j) {
-                select_doctor.append('<option value="' + d + '">' + d + "</option>");
-            });
-
-            // Bill
-            var select_bill = $("#card-select").on("change", function() {
-                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                console.log(val);
-                column7.search(val).draw();
-            });
-
-            column7.data().unique().sort().each(function(d, j) {
-                select_bill.append('<option value="' + d + '">' + d + "</option>");
-            });
-
-            // Packet
-            var select_packet = $("#packet-select").on("change", function() {
-                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                console.log(val);
-                column8.search(val).draw();
-            });
-
-            column8.data().unique().sort().each(function(d, j) {
-                select_packet.append('<option value="' + d + '">' + d + "</option>");
-            });
-        },
+    $(document).ready(function() {
+        var dataTable = $("#checkout_table").DataTable({
+            "stateSave": true,
+            // Hide number od rows selecter
+            "lengthChange": false,
+            // Show Search
+            "search": true,
+            // No buttons at the bottom
+            "bPaginate": false,
+            "language": {
+                "emptyTable": "İnformasiya yoxdur",
+                "paginate": false,
+                "info": "",
+            },
+        });
     });
-});
-
 </script>
 </html>
 @endsection

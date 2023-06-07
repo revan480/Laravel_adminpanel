@@ -25,6 +25,11 @@ Route::get('/', function () {
     return redirect('/admin/login');
 });
 
-Route::post('/checkout/search',
-    [CheckoutController::class, 'checkout']
+Route::match(['get','post'],'/checkout/search',
+    [CheckoutController::class, 'show']
 )->name('page.bill.checkout');
+
+
+Route::get('/admin/show',function(){
+    return view('admin.show');
+})->name("page.checkout.show");
