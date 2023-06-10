@@ -137,9 +137,9 @@
         </div>
         <div class="form-group">
             <label for="date">Tarix:</label>
-            <input type="date" id="fromDate" name="fromDate">
+            <input type="datetime-local" id="fromDate" name="fromDate">
             <label for="untilDate">-dan</label>
-            <input type="date" id="untilDate" name="untilDate">
+            <input type="datetime-local" id="untilDate" name="untilDate">
             <label for="untilDate">-dək</label>
         </div>
         <div class="form-group">
@@ -271,7 +271,7 @@
     $(document).ready(function () {
     $('#checkout_table').DataTable({
         // Save the state
-        "stateSave": true,
+        "stateSave": false,
         // No "show number of entries" field
         "lengthChange": false,
         // No text under the table
@@ -282,6 +282,7 @@
             var column3 = this.api().column(3); // Specify the index of the column you want to work with (zero-based index)
             var column4 = this.api().column(4); // Specify the index of the column you want to work with (zero-based index)
             var column5 = this.api().column(5); // Specify the index of the column you want to work with (zero-based index)
+            var column6 = this.api().column(6); // Specify the index of the column you want to work with (zero-based index)
             var column7 = this.api().column(7); // Specify the index of the column you want to work with (zero-based index)
             var column8 = this.api().column(8); // Specify the index of the column you want to work with (zero-based index)
 
@@ -316,6 +317,82 @@
             });
 
             column8.data().unique().sort()
+
+
+            // Date
+            var fromDate = $("#fromDate, #untilDate").on("change", function() {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                column6.data().each(function (value, index) {
+                    // If the value is more than value of the datepicker
+                    // Hide all rows that does not satisfy to this condition
+
+                    var datetimeFromLocalValue = document.getElementById("fromDate").value;
+                    var datetimeUntilLocalValue = document.getElementById("untilDate").value;
+                    var dateFromObj = new Date(datetimeFromLocalValue);
+                    var dateUntilObj = new Date(datetimeUntilLocalValue);
+
+                    var formattedUntilDate =
+                        dateUntilObj.getFullYear() +
+                        "-" +
+                        padZero(dateUntilObj.getMonth() + 1) +
+                        "-" +
+                        padZero(dateUntilObj.getDate()) +
+                        " " +
+                        padZero(dateUntilObj.getHours()) +
+                        ":" +
+                        padZero(dateUntilObj.getMinutes()) +
+                        ":" +
+                        padZero(dateUntilObj.getSeconds());
+
+                    var formattedFromDate =
+                        dateFromObj.getFullYear() +
+                        "-" +
+                        padZero(dateFromObj.getMonth() + 1) +
+                        "-" +
+                        padZero(dateFromObj.getDate()) +
+                        " " +
+                        padZero(dateFromObj.getHours()) +
+                        ":" +
+                        padZero(dateFromObj.getMinutes()) +
+                        ":" +
+                        padZero(dateFromObj.getSeconds());
+
+                    function padZero(num) {
+                        return num < 10 ? "0" + num : num;
+                    }
+                    $(column6.nodes()[index]).parent().show();
+
+                    // If the value is between from and until times and from and until value are not null show all the rows that satisfy this condition
+                    if (datetimeFromLocalValue != "" && datetimeUntilLocalValue != "") {
+                        if (value < formattedFromDate || value > formattedUntilDate) {
+                            $(column6.nodes()[index]).parent().hide();
+                            // write the total bill
+                            $("#total-price").html("Cəmi: " + calculateTotalBill() + " AZN");
+                        }
+                    }
+                    // If the value of datepicker until is null but from is not then show all rows that more than from (do not consider the until datepicker)
+                    else if (datetimeUntilLocalValue == "" && datetimeFromLocalValue != "") {
+                        if (value <= formattedFromDate) {
+                            $(column6.nodes()[index]).parent().hide();
+                            $("#total-price").html("Cəmi: " + calculateTotalBill() + " AZN");
+                        }
+                    }
+                    // // If the value of datepicker from is null but until is not then show all rows that less than until (do not consider the from datepicker)
+                    else if (datetimeFromLocalValue == "" && datetimeUntilLocalValue != "") {
+                        if (value >= formattedUntilDate) {
+                            $(column6.nodes()[index]).parent().hide();
+                            $("#total-price").html("Cəmi: " + calculateTotalBill() + " AZN");
+
+                        }
+                    }
+                    // // If the value of datepicker from and until are null then show all rows
+                    else if (datetimeFromLocalValue == "" && datetimeUntilLocalValue == "") {
+                        $(column6.nodes()[index]).parent().show();
+                        $("#total-price").html("Cəmi: " + calculateTotalBill() + " AZN");
+                    }
+                });
+            });
 
             var total_bill = 0;
 
