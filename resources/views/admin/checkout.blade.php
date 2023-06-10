@@ -271,7 +271,7 @@
     $(document).ready(function () {
     $('#checkout_table').DataTable({
         // Save the state
-        "stateSave": false,
+        "stateSave": true,
         // No "show number of entries" field
         "lengthChange": false,
         // No text under the table
