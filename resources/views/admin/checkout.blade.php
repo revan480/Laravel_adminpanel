@@ -445,6 +445,8 @@ var room_select = document.getElementById("room-select");
 var doctor_select = document.getElementById("doctor-name");
 var card_select = document.getElementById("card-select");
 var packet_select = document.getElementById("packet-select");
+var datefrom_select = document.getElementById("fromDate");
+var dateuntil_select = document.getElementById("untilDate");
 
 room_select.addEventListener("change", function() {
   var selectedValue = room_select.value;
@@ -491,6 +493,28 @@ var storedValuePacket = localStorage.getItem("selectedValuePacket");
 
 if(storedValuePacket){
     packet_select.value = storedValuePacket;
+}
+
+datefrom_select.addEventListener("change", function(){
+    var selectedValue = datefrom_select.value;
+    localStorage.setItem("selectedValueFromDate", selectedValue);
+});
+
+var storeValueFromDate = localStorage.getItem("selectedValueFromDate");
+
+if(storeValueFromDate){
+    datefrom_select.value = storeValueFromDate;
+}
+
+dateuntil_select.addEventListener("change", function(){
+    var selectedValue = dateuntil_select.value;
+    localStorage.setItem("selectedValueUntilDate", selectedValue);
+});
+
+var storeValueUntilDate = localStorage.getItem("selectedValueUntilDate");
+
+if(storeValueUntilDate){
+    dateuntil_select.value = storeValueUntilDate;
 }
 
 </script>
