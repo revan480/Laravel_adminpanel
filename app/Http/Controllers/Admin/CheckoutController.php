@@ -28,7 +28,7 @@ class CheckoutController extends Controller
             // Take doctors from table doctors
             'doctors' => DB::table('doctors')->get(),
             // Take patients from table patients by using pagination so that patients would appear 10 by 10
-            'patients' => DB::table('patients')->paginate(300),
+            'patients' => DB::table('patients')->paginate(150),
             // Take total bill from table patients
             'total_bill' => DB::table('patients')->sum('price'),
             // Take bill from table bills
