@@ -88,7 +88,7 @@ class CheckoutController extends Controller
         }
 
         $patients = $patientsQuery->paginate(50)->appends($request->except('page'));
-        $total_bill = $patientsQuery->sum('price');
+        $total_bill = $patients->sum('price');
 
         return view('admin.checkout', compact('patients', 'doctors', 'rooms', 'packets', 'packet_id', 'bill_id', 'bills', 'total_bill'));
     }
